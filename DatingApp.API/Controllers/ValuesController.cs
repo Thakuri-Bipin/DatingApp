@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
     //http://localhost:5000/api/values  --> serve with port 5000
+    [Authorize] //every api needs to be authorized for use, allowanonymous is used to get value using api also in order to use api token key must be used
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -31,6 +33,7 @@ namespace DatingApp.API.Controllers
         }
 
         // GET api/values/5
+        [AllowAnonymous] 
         [HttpGet("{id}")]
         public IActionResult GetValue(int id)
         {
