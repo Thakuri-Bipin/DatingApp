@@ -11,5 +11,6 @@ namespace DatingApp.API.Data
 
         public DbSet<User> Users { get; set; } //table column as per the properties defined in User class
 
+        public DbSet<Photo> Photos { get; set; }
     }
 }

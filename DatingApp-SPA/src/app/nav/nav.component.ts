@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
       // console.log('Failed to login');
       // console.log(error); // error from error Interceptor
       this.alertify.error(error);
-    },() => {
+    }, () => {
       this.router.navigate(['/members']);
     });
   }
