@@ -1,0 +1,21 @@
+.img-thumbnail {
+    margin : 25px;
+    width : 60%;
+
+}
+
+.card-body {
+    padding: 0 25px;
+}
+
+.card-footer {
+ 
+ 
+    border-top: none;
+}
+
+.col-sm-4 {
+    border : 1px black;
+    background: pink;
+}
+
