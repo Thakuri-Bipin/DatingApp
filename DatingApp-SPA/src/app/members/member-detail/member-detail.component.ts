@@ -19,10 +19,11 @@ export class MemberDetailComponent implements OnInit {
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-     this.loadUser();
-    // this.route.data.subscribe(data => {
-    //   this.user = data['user'];
-    // });
+     // this.loadUser();
+     this.route.data.subscribe(data => {
+        this.user = data.user;
+        this.galleryImages = this.getImages();
+     });
 
      this.galleryOptions = [
       {
@@ -37,18 +38,18 @@ export class MemberDetailComponent implements OnInit {
     //  this.galleryImages = this.getImages();
   }
 
-  loadUser() {
+  // loadUser() {
 
-    this.userService.getUser(this.route.snapshot.params.id)
-      .subscribe((user: User) => {
-        this.user = user;
-        // console.log(this.user.photoUrl);
-        // console.log(this.user);
-        this.galleryImages = this.getImages();
-      }, error => {
-        this.alertify.error(error);
-      });
-  }
+  //   this.userService.getUser(this.route.snapshot.params.id)
+  //     .subscribe((user: User) => {
+  //       this.user = user;
+  //       // console.log(this.user.photoUrl);
+  //       // console.log(this.user);
+  //       this.galleryImages = this.getImages();
+  //     }, error => {
+  //       this.alertify.error(error);
+  //     });
+  // }
 
 
   getImages() {
@@ -67,7 +68,4 @@ export class MemberDetailComponent implements OnInit {
       return imageUrls;
     }
   }
-
-
-
 }

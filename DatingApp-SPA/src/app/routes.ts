@@ -6,6 +6,7 @@ import { ListsComponent } from './lists/lists.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export const appRoutes: Routes = [
     {path : '', component : HomeComponent},
@@ -15,8 +16,10 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            {path : 'members', component : MemberListComponent}, // guards the component while it is routed without authorization
-            {path : 'members/:id', component : MemberDetailComponent},
+            {path : 'members', component : MemberListComponent,
+                 resolve: {users: MemberListResolver}}, // guards the component while it is routed without authorization
+            {path : 'members/:id', component : MemberDetailComponent,
+                 resolve: {user: MemberDetailResolver}}, // use of resolvers 
             {path : 'messages', component : MessagesComponent},
             {path : 'lists', component : ListsComponent},
         ]

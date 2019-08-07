@@ -28,9 +28,10 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export class MyHammerConfig extends HammerGestureConfig  {
-  overrides = <any>{
+  overrides = <any> {
       // override hammerjs default configuration
       'pan': {threshold: 5},
       'swipe': {
@@ -38,7 +39,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
            threshold: 20,
            direction: 31 // /!\ ugly hack to allow swipe in all direction
       }
-  }
+  };
 }
 
 
@@ -82,6 +83,7 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       UserService,
+      MemberListResolver,
       MemberDetailResolver,
       {
          provide: HAMMER_GESTURE_CONFIG,
