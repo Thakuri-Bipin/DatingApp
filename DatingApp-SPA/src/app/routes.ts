@@ -7,6 +7,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export const appRoutes: Routes = [
     {path : '', component : HomeComponent},
@@ -19,7 +22,9 @@ export const appRoutes: Routes = [
             {path : 'members', component : MemberListComponent,
                  resolve: {users: MemberListResolver}}, // guards the component while it is routed without authorization
             {path : 'members/:id', component : MemberDetailComponent,
-                 resolve: {user: MemberDetailResolver}}, // use of resolvers 
+                 resolve: {user: MemberDetailResolver}}, // use of resolvers
+            {path: 'member/edit', component: MemberEditComponent,
+                 resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             {path : 'messages', component : MessagesComponent},
             {path : 'lists', component : ListsComponent},
         ]
